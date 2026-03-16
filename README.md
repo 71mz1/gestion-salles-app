@@ -1,6 +1,6 @@
 # 🏫 Système de Gestion des Salles et Pannes - ENCGO
 
-Projet de fin de module pour la gestion des équipements informatiques, pannes, et affectations.
+Ce projet est une application web Full-Stack pour la gestion des équipements informatiques, des pannes et des affectations des étudiants.
 
 ## 📁 Structure du Projet
 - **/backend**: API REST développée avec Laravel 11.
