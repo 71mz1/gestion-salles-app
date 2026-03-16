@@ -72,10 +72,3 @@ git push origin feature/nom-de-la-fonctionnalite
 ```
 
 Ensuite ouvrir une **Pull Request** sur GitHub vers la branche `main`.
-
----
-
-## 👥 Équipe
-- Membre 1 - 
-- Membre 2 - 
-- Membre 3 -
