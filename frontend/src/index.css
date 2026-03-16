@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+
+:root {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* ── Color tokens (light mode defaults) ── */
+  --bg:             #f8fafc;
+  --surface:        #ffffff;
+  --surface-alt:    #f8fafc;
+  --border:         #e2e8f0;
+  --border-light:   #f1f5f9;
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+  --accent:         #14b8a6;
+  --accent-light:   #f0fdfa;
+  --accent-text:    #0f766e;
+  --accent-border:  #99f6e4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--text-primary);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#root { min-height: 100vh; }
+
+/* ── Dark mode overrides ── */
+.dark {
+  --bg:             #0f172a;
+  --surface:        #1e293b;
+  --surface-alt:    #0f172a;
+  --border:         #334155;
+  --border-light:   #1e293b;
+  --text-primary:   #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted:     #64748b;
+  --accent-light:   #134e4a;
+  --accent-text:    #5eead4;
+  --accent-border:  #0f4c44;
+}
+
+/* ── Key surfaces driven by CSS vars ── */
+.dark .bg-white          { background-color: var(--surface) !important; }
+.dark .bg-slate-50       { background-color: var(--surface-alt) !important; }
+.dark .bg-slate-100      { background-color: #1e293b !important; }
+
+.dark .border-slate-100  { border-color: var(--border-light) !important; }
+.dark .border-slate-200  { border-color: var(--border) !important; }
+
+.dark .text-slate-800    { color: var(--text-primary) !important; }
+.dark .text-slate-700    { color: var(--text-primary) !important; }
+.dark .text-slate-600    { color: var(--text-secondary) !important; }
+.dark .text-slate-500    { color: var(--text-muted) !important; }
+.dark .text-slate-400    { color: #475569 !important; }
+
+.dark .shadow-sm         { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4) !important; }
+
+/* ── Accent-driven elements (via CSS var) ── */
+[data-accent-bg]   { background-color: var(--accent) !important; }
+[data-accent-text] { color: var(--accent) !important; }
+[data-accent-border] { border-color: var(--accent) !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+.dark ::-webkit-scrollbar-thumb { background: #334155; }
