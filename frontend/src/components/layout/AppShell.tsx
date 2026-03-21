@@ -1,5 +1,6 @@
 import {
   Bell,
+  Book,
   ChevronRight,
   FileText,
   GraduationCap,
@@ -36,6 +37,7 @@ const navItems: NavItem[] = [
   { label: 'Postes',           href: '/postes',            icon: Monitor },
   { label: 'Pannes',           href: '/pannes',            icon: TriangleAlert },
   { label: 'Etudiants',        href: '/etudiants',         icon: GraduationCap },
+  { label: 'Niveaux',          href: '/niveaux',           icon: Book },
   { label: 'Utilisateurs',     href: '/utilisateurs',      icon: Users },
   { label: 'Fiches',           href: '/fiches',            icon: FileText },
 ]
@@ -86,10 +88,11 @@ export function AppShell() {
     return () => ctx.revert()
   }, [location.pathname])
 
-  const filteredItems = useMemo(() => {
+const filteredItems = useMemo(() => {
     if (role === 'administrateur') return navItems
-    if (role === 'technicien') return navItems.filter((i) => i.href !== '/utilisateurs')
-    return navItems.filter((i) => !['/utilisateurs', '/fiches'].includes(i.href))
+    if (role === 'technicien') return navItems.filter((i) => i.href === '/pannes')
+    if (role === 'professeur') return navItems.filter((i) =>  ['/pannes', '/postes'].includes(i.href))
+    return navItems
   }, [role])
 
   const currentLabel = filteredItems.find((i) => i.href === location.pathname)?.label ?? 'Dashboard'

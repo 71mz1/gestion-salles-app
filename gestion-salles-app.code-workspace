@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "💻 FRONTEND (React)",
+			"path": "frontend"
+		},
+		{
+			"name": "⚙️ BACKEND (Laravel)",
+			"path": "backend"
+		},
+		{
+			"name": "📝 PROJECT ROOT",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

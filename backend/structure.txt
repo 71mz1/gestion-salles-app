@@ -1,0 +1,214 @@
+backend
+├── README.md
+├── app
+│   ├── Console
+│   │   └── Kernel.php
+│   ├── Exceptions
+│   │   └── Handler.php
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   ├── Api
+│   │   │   │   ├── AffectationController.php
+│   │   │   │   ├── AuthController.php
+│   │   │   │   ├── DashboardController.php
+│   │   │   │   ├── EtudiantController.php
+│   │   │   │   ├── NiveauController.php
+│   │   │   │   ├── PanneController.php
+│   │   │   │   ├── PcController.php
+│   │   │   │   ├── PosteController.php
+│   │   │   │   ├── ProfesseurController.php
+│   │   │   │   ├── ProfesseurPanneController.php
+│   │   │   │   ├── SalleController.php
+│   │   │   │   └── UserController.php
+│   │   │   └── Controller.php
+│   │   ├── Kernel.php
+│   │   └── Middleware
+│   │       ├── Authenticate.php
+│   │       ├── EncryptCookies.php
+│   │       ├── EnsureRole.php
+│   │       ├── PreventRequestsDuringMaintenance.php
+│   │       ├── RedirectIfAuthenticated.php
+│   │       ├── TrimStrings.php
+│   │       ├── TrustHosts.php
+│   │       ├── TrustProxies.php
+│   │       └── VerifyCsrfToken.php
+│   ├── Models
+│   │   ├── Affectation.php
+│   │   ├── Etudiant.php
+│   │   ├── Niveau.php
+│   │   ├── Panne.php
+│   │   ├── Pc.php
+│   │   ├── Professeur.php
+│   │   ├── Salle.php
+│   │   └── User.php
+│   ├── Providers
+│   │   ├── AppServiceProvider.php
+│   │   ├── AuthServiceProvider.php
+│   │   ├── BroadcastServiceProvider.php
+│   │   ├── EventServiceProvider.php
+│   │   └── RouteServiceProvider.php
+│   └── Services
+│       └── JwtService.php
+├── artisan
+├── bootstrap
+│   ├── app.php
+│   └── cache
+│       ├── packages.php
+│       └── services.php
+├── composer.json
+├── composer.lock
+├── config
+│   ├── app.php
+│   ├── auth.php
+│   ├── broadcasting.php
+│   ├── cache.php
+│   ├── cors.php
+│   ├── database.php
+│   ├── filesystems.php
+│   ├── hashing.php
+│   ├── logging.php
+│   ├── mail.php
+│   ├── queue.php
+│   ├── services.php
+│   ├── session.php
+│   └── view.php
+├── database
+│   ├── factories
+│   │   └── UserFactory.php
+│   ├── migrations
+│   │   ├── 2014_10_12_000000_create_users_table.php
+│   │   ├── 2014_10_12_100000_create_password_resets_table.php
+│   │   ├── 2019_08_19_000000_create_failed_jobs_table.php
+│   │   ├── 2026_03_07_222344_create_salles_table.php
+│   │   ├── 2026_03_07_222350_create_postes_table.php
+│   │   ├── 2026_03_07_222353_create_professeurs_table.php
+│   │   ├── 2026_03_07_222356_create_pannes_table.php
+│   │   ├── 2026_03_07_222400_create_niveaux_table.php
+│   │   ├── 2026_03_07_222410_create_etudiants_table.php
+│   │   └── 2026_03_07_222420_create_affectations_table.php
+│   └── seeders
+│       └── DatabaseSeeder.php
+├── package.json
+├── phpunit.xml
+├── public
+│   ├── favicon.ico
+│   ├── index.php
+│   ├── robots.txt
+│   └── web.config
+├── resources
+│   ├── css
+│   │   └── app.css
+│   ├── js
+│   │   ├── app.js
+│   │   └── bootstrap.js
+│   ├── lang
+│   │   └── en
+│   │       ├── auth.php
+│   │       ├── pagination.php
+│   │       ├── passwords.php
+│   │       └── validation.php
+│   └── views
+│       └── welcome.blade.php
+├── routes
+│   ├── api.php
+│   ├── channels.php
+│   ├── console.php
+│   └── web.php
+├── server.php
+├── storage
+│   ├── app
+│   │   └── public
+│   ├── framework
+│   │   ├── cache
+│   │   │   └── data
+│   │   │       ├── 5f
+│   │   │       │   └── 79
+│   │   │       │       └── 5f79ca28c5f23bb2bdee5c894f207355b5536cf9
+│   │   │       └── d9
+│   │   │           └── c9
+│   │   │               └── d9c9abbbcead925164804e1e5006a0cc44ddb903
+│   │   ├── sessions
+│   │   │   ├── 08BVp39yaTOLzXYcsUSBdwRhQlNN8AAeSp20WQaG
+│   │   │   ├── 0DciO8KyirMs9pKQceZvF1KS3bWJ9nr02W4525dJ
+│   │   │   ├── 0SplzLqZnicKscXSG53whBLblwxj6e2IQnsXcPye
+│   │   │   ├── 2OrgbARTMDsw7cP8sLK6XSRxlMJa4vruUJ08qugY
+│   │   │   ├── 4RDGzp2k0hjhLQGRHgmRoGuvvnogtlCBsmIZzQQs
+│   │   │   ├── 4VLUnBvU9f76hJYUC5IU5VIkbslvUbcTmBxanOW4
+│   │   │   ├── 5DkPP0fexaqpYNXxGlQWYnETewaHOps6QPHXRLVK
+│   │   │   ├── 7BFIP3rfw8sa7C92HLj6mHTPXATHVnWLEVuG5FSo
+│   │   │   ├── 7rGpYJ5THfnZNnqgT5zNgnensfWbEz60CBD6f9vZ
+│   │   │   ├── BUzFoDrhONXAfQq0ohw2pw7LDp0GJUeMbKaTaidZ
+│   │   │   ├── D9b3CaqbYXFNvjAEJ01HVhyJbajoOXnpMrqMxAf8
+│   │   │   ├── DFiuurcDsDBzJhVoAlnZoUDbWlxXTiA9iwqu6bZp
+│   │   │   ├── F8n66oMHcTDVZvkkaR9EPVWgSuI3F2yYnKWXB2Oo
+│   │   │   ├── I6f4AR6DCU1jnhNgULUsrXbkXIxfB6qSRqWOLBbJ
+│   │   │   ├── IF5khhixiK7AXWwNW8nj36dlGg4l3SBPehA7FIGg
+│   │   │   ├── Ie2WWwmv6G5cSSUM9uhfiKBvGtVzk5esR73s2lHW
+│   │   │   ├── Ilreoi5dYgDysYVcCI3zw7f8j0OGHS7n3ZBAYYhP
+│   │   │   ├── IzepFBiOVx7MbgvEQsrNJiHjvF0V93K9EbYJKonD
+│   │   │   ├── JIwKDfsg0GAJjxQEDY8cnwelca1WK082yCwt5PLl
+│   │   │   ├── KMxtQg79jYusB1CEnD4vvNXFH2zQ3ijKyPEY6MmF
+│   │   │   ├── LA5GP48cRotmEDHxjPNuHdxG2Sggm7efc3r9fh8P
+│   │   │   ├── MbNqQktXColCGQy33SdqlRnDA0zWXSFrU0fgULdJ
+│   │   │   ├── N4rL7DdabRHpt5X8CMRDi2ep7SjUhuJqJRfHGqH7
+│   │   │   ├── N5rpGZJpsasy4nwhJuS3ysc9KzGXWbFISI0bRda2
+│   │   │   ├── OQGmoiTyOik4lW91nhLu8C4Hk1NeZ7yRaY2oloWE
+│   │   │   ├── RIXSIHjt4cOkdqnOmSemxvjUNKqDjpyJF2aJHPFQ
+│   │   │   ├── SeEVGTJ0wVDQoNUWUstRlxej9ak3h1qP1hAusbg1
+│   │   │   ├── SyQ3VbEbLpbVj5JrRY7j9oosEvGX0ZTGrdgihvTS
+│   │   │   ├── U7OUbBfAOgNqV1zyQj5NFqI2Ddn5fZjsYiSrZ3FO
+│   │   │   ├── Xh6RI6obNkQgxdwq6yvL3fw8jfixw1vjzPpdNqOg
+│   │   │   ├── ZPotlsawmWjQ3KGMtXkb0OtVLCncPabLrOFiDrXF
+│   │   │   ├── aQmUzjRohoDbaOmBy0zLPu2mkvJFzkiVigh343FM
+│   │   │   ├── am874NNUJbrTq3dFFuVsOkELOFkZwHTbB6eTuUId
+│   │   │   ├── bneWPnFTACpKeSo7WiWznMETiQirRPjipBKfJlsO
+│   │   │   ├── c3ELB6UCb67WNDSWgrumHF2xm2gAeLKIS0b20uBT
+│   │   │   ├── cuszftEf0w3h2oQhHNTgPmgjiwPMBUXkRyhoBirr
+│   │   │   ├── e7hFJD9O6xoaU0xB0dJpY4P0xwJkJFah2Yg1ibHM
+│   │   │   ├── eD6CSrewmydHuuDx1yNAoxEn2vbGD8jbqlnU3qa9
+│   │   │   ├── fgNwFYhQL81NU8DsAPK4tEbICsXVYetAXwRMHL3I
+│   │   │   ├── fpidlS8mOJLLNDSYYUCEMMdq0kplkSyzXMTRu6Sl
+│   │   │   ├── hFJPIH4JP2xUMLwpm0S20DZfnS2sILR1DyRQDGtT
+│   │   │   ├── hmGPk9mqBhWSia9MeWnkkct5Hcj6l5GtbSxs8B8B
+│   │   │   ├── hyacy4BOlXgMWNEHUVeKH1ZkgjH5BzhIu3kKv3ty
+│   │   │   ├── i5OKrxSpzfc7ElnsBysDKHSQqlfx4EEsbDbkWE0p
+│   │   │   ├── kFzu9LJIq5F8Q4FDzt5Gl48Ihy3b5ToV8E0nrDfU
+│   │   │   ├── kT7hlVMUUlTUoi8JYYQBnXMSSIqSAZFUqqY2YtqK
+│   │   │   ├── l5KY5WXudQqZCvUSBYysgs8Sn6tqfIN9nWXGYjMf
+│   │   │   ├── nLBRF4anuiLtENAKGfkpcXdNFQdlkgC0tYFQYDn7
+│   │   │   ├── nV6vLJ8G8zkCtpUpB4gEAtWQtnrZRBghwNQppEB4
+│   │   │   ├── nWWaIhC4lzkw7ExG9309PuFpUj43iDx8MWGbSY1j
+│   │   │   ├── nX5yFj9MVoO6v2GPsfjXZqbfqUDBTnPD6LT5kBHq
+│   │   │   ├── nuQvy2UtbmWfV6GVWrxyrteAJbfCQxh4um9D7xwt
+│   │   │   ├── o72FnNl6mhlHzV1wrmk6drHZaIU6l6DmZ6kwvOxp
+│   │   │   ├── qM1ykD5oBvG0W33uLQ3VLtnm1tEdyBnCLOkaHpWN
+│   │   │   ├── qbj2imoN0f8Ujr6GR4WvSIK0GnvyNQqemYMkFU4s
+│   │   │   ├── qrXfWEQIhFzetJ0OUmO63RCBEHtPAUPe0EfoQnxP
+│   │   │   ├── tBsj3JpsIVaxK9kSK1wZmQN57rxPAaKVDjLiTwPu
+│   │   │   ├── tV212icdPiv9YP4a4WMfPTuqHwP4cw1H9pik0ovh
+│   │   │   ├── tpOYdhSEYO4Dqxy5iZ7bnCV1Kj4QsGHb3zq3pU3m
+│   │   │   ├── wLy2VKaRXGqw6teADKPbHAUUJFrts204WSEvuY6u
+│   │   │   ├── wrAE5M4QwjsS3G1oGVDlFZNubWQRB50bUeUlHPsp
+│   │   │   ├── yC6Y61vni50ABUYc35LnINqNiVFrnPvvYzBuKXQA
+│   │   │   └── yzmMMpB0loyQ5QIRHdJEcM9j9okdoBrIy6E68Ors
+│   │   ├── testing
+│   │   └── views
+│   │       ├── 6ecc93fc31f811839260dc02dced9d6df35ce605.php
+│   │       ├── 769fcf0a44a7e5c996bc73627a155d5bfb05685f.php
+│   │       ├── 7974b1f665b2eedbbb605b0dad43772c076c8dfb.php
+│   │       ├── 81b30095b6d2dac164af1c3fd0b8695112cea7de.php
+│   │       ├── 84259257ff913ac6472c37be2c9658e6ca42b46f.php
+│   │       ├── 9651f0023765d0c0ec9142958d2cf2b348247591.php
+│   │       └── 9cbba347a09c61ee488bc895c646c9112291e528.php
+│   └── logs
+│       ├── laravel.log
+│       └── serve.log
+├── structure.txt
+├── tests
+│   ├── CreatesApplication.php
+│   ├── Feature
+│   │   └── ExampleTest.php
+│   ├── TestCase.php
+│   └── Unit
+│       └── ExampleTest.php
+└── webpack.mix.js

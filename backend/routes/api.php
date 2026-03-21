@@ -12,38 +12,51 @@ use App\Http\Controllers\Api\SalleController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Public
-Route::post('/auth/login',  [AuthController::class, 'login']);
 
-// Public
-Route::apiResource('niveaux', NiveauController::class);
-Route::apiResource('etudiants', EtudiantController::class);
-Route::post('/etudiants/import-csv', [EtudiantController::class, 'importCsv']);
-Route::apiResource('affectations', AffectationController::class)->except(['update', 'show']);
+Route::post('/auth/login', [AuthController::class, 'login']);
 
-// Authenticated
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
+    
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/auth/me',      [AuthController::class, 'me']);
+    
+    // 1. مسارات مشتركة للعرض (تمنع خطأ 403 للأدوار الثلاثة)
+    Route::middleware('role:administrateur,technicien,professeur')->group(function () {
+        Route::get('/pcs', [PcController::class, 'index']);
+        Route::get('/pcs/{id}', [PcController::class, 'show']);
+        Route::get('/salles', [SalleController::class, 'index']);
+        Route::get('/salles/{id}', [SalleController::class, 'show']);
+    });
 
-    // Dashboard
-    Route::get('/dashboard/stats', [DashboardController::class, 'stats']);
+    // 2. مسارات البروفيسور (إصلاح خطأ 405)
+    Route::middleware('role:professeur')->group(function () {
+        // يجب تعريف GET و POST معاً لنفس المسار إذا كان الـ Frontend يحتاجهما
+        Route::get('/professeur/pannes', [ProfesseurPanneController::class, 'index']); 
+        Route::post('/professeur/pannes', [ProfesseurPanneController::class, 'store']);
+        Route::get('/professeur/pcs', [ProfesseurPanneController::class, 'listPcs']);
+    });
 
-    // Salles
-    Route::apiResource('salles', SalleController::class);
+    // 3. مسارات التقني والأدمن (إدارة الأعطال)
+    Route::middleware('role:technicien,administrateur')->group(function () {
+        Route::apiResource('pannes', PanneController::class);
+    });
 
-    // PCs / Postes
-    Route::apiResource('pcs', PcController::class);
+    // 4. مسارات الأدمن فقط (التحكم الكامل)
+    Route::middleware('role:administrateur')->group(function () {
+        Route::get('/dashboard/stats', [DashboardController::class, 'stats']);
+        
+        // عمليات الكتابة للأجهزة والقاعات
+        Route::post('/pcs', [PcController::class, 'store']);
+        Route::put('/pcs/{id}', [PcController::class, 'update']);
+        Route::delete('/pcs/{id}', [PcController::class, 'destroy']);
 
-    // Pannes
-    Route::apiResource('pannes', PanneController::class);
+        Route::post('/salles', [SalleController::class, 'store']);
+        Route::put('/salles/{id}', [SalleController::class, 'update']);
+        Route::delete('/salles/{id}', [SalleController::class, 'destroy']);
 
-    // Users
-    Route::apiResource('users', UserController::class);
-
-    // Espace Professeur
-    Route::get('/professeur/pannes',          [ProfesseurPanneController::class, 'index']);
-    Route::post('/professeur/pannes',         [ProfesseurPanneController::class, 'store']);
-    Route::get('/professeur/pcs',             [ProfesseurPanneController::class, 'listPcs']);
-    Route::get('/professeur/pcs/{id}/etat',   [ProfesseurPanneController::class, 'etatPc']);
+        Route::apiResource('users', UserController::class);
+        Route::apiResource('niveaux', NiveauController::class);
+        Route::apiResource('etudiants', EtudiantController::class);
+        Route::apiResource('affectations', AffectationController::class);
+    });
 });

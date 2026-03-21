@@ -69,7 +69,7 @@ export function PannesPage() {
           pc_id: parseInt(form.pc_id),
           descr_panne: form.descr_panne,
           date_panne: form.date_panne,
-          prof_id: 1, // admin/tech: use placeholder; backend validates
+          prof_id: 1,
         })
       }
       setPannes((prev) => [created, ...prev])
@@ -145,9 +145,11 @@ export function PannesPage() {
             <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
             <Input placeholder="Rechercher…" className="pl-9 h-8 text-xs w-44" value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>
-          <Button size="sm" onClick={() => setOpen(true)}>
-            <Plus className="mr-1.5 h-3.5 w-3.5" />Déclarer une panne
-          </Button>
+          {role === 'professeur' && (
+            <Button size="sm" onClick={() => setOpen(true)}>
+              <Plus className="mr-1.5 h-3.5 w-3.5" />Déclarer une panne
+            </Button>
+          )}
         </div>
       </div>
 
@@ -209,6 +211,8 @@ export function PannesPage() {
                     </Badge>
                     <span className="text-[10px] text-slate-400">{p.date_panne}</span>
                   </div>
+
+                  {/* زر Modifier — technicien و admin فقط */}
                   {role !== 'professeur' && (
                     <button
                       onClick={() => openIntervention(p)}
@@ -218,30 +222,34 @@ export function PannesPage() {
                       <Pencil className="h-3.5 w-3.5" />
                     </button>
                   )}
-                  {confirmDeleteId === p.id ? (
-                    <div className="flex items-center gap-1.5">
+
+                  {/* زر Supprimer — admin فقط */}
+                  {role === 'administrateur' && (
+                    confirmDeleteId === p.id ? (
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => handleDelete(p.id)}
+                          disabled={deleting}
+                          className="rounded-lg border border-rose-200 bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-600 hover:bg-rose-100 transition-colors disabled:opacity-50"
+                        >
+                          {deleting ? '…' : 'Oui'}
+                        </button>
+                        <button
+                          onClick={() => setConfirmDeleteId(null)}
+                          className="rounded-lg border border-slate-200 bg-white px-2 py-0.5 text-xs font-medium text-slate-600 hover:bg-slate-50 transition-colors"
+                        >
+                          Non
+                        </button>
+                      </div>
+                    ) : (
                       <button
-                        onClick={() => handleDelete(p.id)}
-                        disabled={deleting}
-                        className="rounded-lg border border-rose-200 bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-600 hover:bg-rose-100 transition-colors disabled:opacity-50"
+                        onClick={() => setConfirmDeleteId(p.id)}
+                        className="rounded-lg p-1.5 text-slate-400 hover:bg-rose-50 hover:text-rose-500 transition-colors"
+                        title="Supprimer"
                       >
-                        {deleting ? '…' : 'Oui'}
+                        <Trash2 className="h-3.5 w-3.5" />
                       </button>
-                      <button
-                        onClick={() => setConfirmDeleteId(null)}
-                        className="rounded-lg border border-slate-200 bg-white px-2 py-0.5 text-xs font-medium text-slate-600 hover:bg-slate-50 transition-colors"
-                      >
-                        Non
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => setConfirmDeleteId(p.id)}
-                      className="rounded-lg p-1.5 text-slate-400 hover:bg-rose-50 hover:text-rose-500 transition-colors"
-                      title="Supprimer"
-                    >
-                      <Trash2 className="h-3.5 w-3.5" />
-                    </button>
+                    )
                   )}
                 </div>
               </div>

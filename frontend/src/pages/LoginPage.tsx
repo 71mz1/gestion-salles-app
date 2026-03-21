@@ -45,7 +45,11 @@ export function LoginPage() {
     try {
       const res = await authApi.login(email, password)
       login(res.token, res.user)
-      navigate('/tableau-de-bord', { replace: true })
+      if (res.user.role === 'technicien' || res.user.role === 'professeur') {
+  navigate('/pannes', { replace: true })
+} else {
+  navigate('/tableau-de-bord', { replace: true })
+}
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Identifiant ou mot de passe incorrect.')
       shake()

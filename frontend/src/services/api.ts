@@ -146,6 +146,8 @@ export interface ApiNiveau {
   id: number
   semestre: string
   filiere: string
+  created_at?: string
+  updated_at?: string
 }
 
 // Etudiants
@@ -229,6 +231,8 @@ export const professeurApi = {
 export const niveauApi = {
   list: () => get<ApiNiveau[]>('/niveaux'),
   create: (data: { semestre: string; filiere: string }) => post<ApiNiveau>('/niveaux', data),
+  update: (id: number, data: Partial<{ semestre: string; filiere: string }>) =>
+    put<ApiNiveau>(`/niveaux/${id}`, data),
   destroy: (id: number) => del<{ message: string }>(`/niveaux/${id}`),
 }
 

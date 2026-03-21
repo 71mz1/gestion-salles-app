@@ -1,0 +1,51 @@
+frontend
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+│   └── vite.svg
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── assets
+│   │   ├── encgo.jpeg
+│   │   └── react.svg
+│   ├── components
+│   │   ├── layout
+│   │   │   └── AppShell.tsx
+│   │   └── ui
+│   │       ├── badge.tsx
+│   │       ├── button.tsx
+│   │       ├── card.tsx
+│   │       └── input.tsx
+│   ├── index.css
+│   ├── lib
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── DashboardPage.tsx
+│   │   ├── EmploisDuTempsPage.tsx
+│   │   ├── EtudiantsPage.tsx
+│   │   ├── FichesPage.tsx
+│   │   ├── LoginPage.tsx
+│   │   ├── PannesPage.tsx
+│   │   ├── ParametresPage.tsx
+│   │   ├── PostesPage.tsx
+│   │   ├── SallesPage.tsx
+│   │   └── UtilisateursPage.tsx
+│   ├── services
+│   │   └── api.ts
+│   ├── state
+│   │   ├── auth-context.ts
+│   │   ├── auth-provider.tsx
+│   │   ├── auth.ts
+│   │   └── theme-context.tsx
+│   └── types
+│       └── auth.ts
+├── structure.txt
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
