@@ -11,6 +11,7 @@ import { SallesPage } from './pages/SallesPage'
 import { UtilisateursPage } from './pages/UtilisateursPage'
 import { EtudiantsPage } from './pages/EtudiantsPage'
 import { NiveauxPage } from './pages/NiveauxPage'
+import { ProfesseursPage } from './pages/ProfesseursPage'
 import { AuthProvider, useAuth } from './state/auth'
 import { ThemeProvider } from './state/theme-context'
 import type { UserRole } from './types/auth'
@@ -79,6 +80,14 @@ const { isAuthenticated, role } = useAuth();
           element={
             <RequireRole allowed={['administrateur']}>
               <NiveauxPage />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/professeurs"
+          element={
+            <RequireRole allowed={['administrateur']}>
+              <ProfesseursPage />
             </RequireRole>
           }
         />

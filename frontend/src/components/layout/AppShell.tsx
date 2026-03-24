@@ -11,6 +11,7 @@ import {
   Search,
   Settings,
   TriangleAlert,
+  UserRound,
   Users,
   X,
 } from 'lucide-react'
@@ -38,6 +39,7 @@ const navItems: NavItem[] = [
   { label: 'Pannes',           href: '/pannes',            icon: TriangleAlert },
   { label: 'Etudiants',        href: '/etudiants',         icon: GraduationCap },
   { label: 'Niveaux',          href: '/niveaux',           icon: Book },
+  { label: 'Professeurs',      href: '/professeurs',       icon: UserRound },
   { label: 'Utilisateurs',     href: '/utilisateurs',      icon: Users },
   { label: 'Fiches',           href: '/fiches',            icon: FileText },
 ]

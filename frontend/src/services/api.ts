@@ -168,6 +168,71 @@ export interface ApiAffectation {
   etudiant: { id: number; nom: string; prenom: string; niveau: ApiNiveau | null } | null
 }
 
+// Fiches
+export interface FichePc {
+  id: number
+  num_poste: string
+  processeur: string | null
+  ram: string | null
+  disque_dur: string | null
+  systeme_exploitation: string | null
+  etat: 'fonctionnel' | 'en_panne' | 'en_maintenance'
+  created_at: string
+  salle: { id: number; nom_salle: string; code_salle: string } | null
+  affectations: Array<{
+    id: number
+    date: string
+    heure_debut: string
+    heure_fin: string
+    etudiant: {
+      id: number
+      nom: string
+      prenom: string
+      niveau: { filiere: string; semestre: string } | null
+    } | null
+  }>
+  pannes: Array<{
+    id: number
+    descr_panne: string
+    date_panne: string
+    statue: string
+    descr_reparation: string | null
+    date_reparation: string | null
+    professeur: { nom: string; prenom: string } | null
+  }>
+}
+
+export interface FicheSalle {
+  id: number
+  nom_salle: string
+  code_salle: string
+  capacite: number
+  nb_postes: number
+  pcs_count: number
+  created_at: string
+  etudiants: Array<{
+    id: number
+    nom: string
+    prenom: string
+    niveau: { filiere: string; semestre: string } | null
+  }>
+  niveaux: string[]
+  horaires: Array<{
+    id: number
+    pc_id: number
+    num_poste: string
+    date: string
+    heure_debut: string
+    heure_fin: string
+    etudiant: { id: number; nom: string; prenom: string; niveau: { filiere: string; semestre: string } | null } | null
+  }>
+}
+
+export const ficheApi = {
+  pc: (id: number) => get<FichePc>(`/fiches/pc/${id}`),
+  salle: (id: number) => get<FicheSalle>(`/fiches/salle/${id}`),
+}
+
 export const authApi = {
   login: (email: string, password: string) => post<LoginResponse>('/auth/login', { email, password }, false),
   me: () => get<ApiUser>('/auth/me'),
@@ -234,6 +299,30 @@ export const niveauApi = {
   update: (id: number, data: Partial<{ semestre: string; filiere: string }>) =>
     put<ApiNiveau>(`/niveaux/${id}`, data),
   destroy: (id: number) => del<{ message: string }>(`/niveaux/${id}`),
+}
+
+// Professeurs (admin)
+export interface ApiProfesseur {
+  id: number
+  nom: string
+  prenom: string
+  email: string
+  user_id: number | null
+  created_at?: string
+}
+
+export const professeurAdminApi = {
+  list: () => get<ApiProfesseur[]>('/professeurs'),
+  create: (data: { nom: string; prenom: string; email: string }) =>
+    post<ApiProfesseur>('/professeurs', data),
+  update: (id: number, data: Partial<{ nom: string; prenom: string; email: string }>) =>
+    put<ApiProfesseur>(`/professeurs/${id}`, data),
+  destroy: (id: number) => del<{ message: string }>(`/professeurs/${id}`),
+  importCsv: (file: File) => {
+    const fd = new FormData()
+    fd.append('file', file)
+    return postForm<{ created: number; errors: string[] }>('/professeurs/import-csv', fd)
+  },
 }
 
 export const etudiantApi = {
